@@ -15,25 +15,27 @@ public class ItaliaGuerraTelegramBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        CHAT_ID = update.getMessage().getChatId();
-        ConfigurationBuilder cb = new ConfigurationBuilder();
-        cb.setDebugEnabled(true)
-                .setOAuthConsumerKey("x6K10ScMFzJuHm74OpV9ujZ4W")
-                .setOAuthConsumerSecret("fh8nVQ2nGtExpnbc3R3YoI3ag1g3FZs3HWlxir48vLYk8LOClE")
-                .setOAuthAccessToken("1137659424657596416-6fmeo86a0Ieede5EfQ7lEgqEUsYutr")
-                .setOAuthAccessTokenSecret("ysCL64VhUShe4n0GUz4y795sk00uilDSQihTGr5ikjH3V");
+        if (update.getMessage().getText().equals("/start")) {
+            CHAT_ID = update.getMessage().getChatId();
+            ConfigurationBuilder cb = new ConfigurationBuilder();
+            cb.setDebugEnabled(true)
+                    .setOAuthConsumerKey("x6K10ScMFzJuHm74OpV9ujZ4W")
+                    .setOAuthConsumerSecret("fh8nVQ2nGtExpnbc3R3YoI3ag1g3FZs3HWlxir48vLYk8LOClE")
+                    .setOAuthAccessToken("1137659424657596416-6fmeo86a0Ieede5EfQ7lEgqEUsYutr")
+                    .setOAuthAccessTokenSecret("ysCL64VhUShe4n0GUz4y795sk00uilDSQihTGr5ikjH3V");
 
-        FilterQuery filterQuery = new FilterQuery(ITALIAGUERRABOT_ID);
-        TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
-        TwitterStream twitterStream = twitterStreamFactory.getInstance();
-        twitterStream.addListener(new ItaliaGuerraBotListener(this));
-        twitterStream.filter(filterQuery);
+            FilterQuery filterQuery = new FilterQuery(ITALIAGUERRABOT_ID);
+            TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
+            TwitterStream twitterStream = twitterStreamFactory.getInstance();
+            twitterStream.addListener(new ItaliaGuerraBotListener(this));
+            twitterStream.filter(filterQuery);
 
-        SendMessage message = new SendMessage().setChatId(update.getMessage().getChatId()).setText("Bot avviato. In attesa di aggiornamenti da parte di [ItaliaGuerraBot 2020](https://twitter.com/italiaguerrabot)").setParseMode("Markdown");
-        try {
-            execute(message);
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
+            SendMessage message = new SendMessage().setChatId(update.getMessage().getChatId()).setText("Bot avviato. In attesa di aggiornamenti da parte di [ItaliaGuerraBot 2020](https://twitter.com/italiaguerrabot)").setParseMode("Markdown");
+            try {
+                execute(message);
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
         }
 
     }
