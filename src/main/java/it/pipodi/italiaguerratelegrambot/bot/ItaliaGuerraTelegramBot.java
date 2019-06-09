@@ -9,6 +9,20 @@ import twitter4j.conf.ConfigurationBuilder;
 
 public class ItaliaGuerraTelegramBot extends TelegramLongPollingBot {
 
+    private String consumerKey;
+    private String consumerSecret;
+    private String accessToken;
+    private String accessTokenSecret;
+    private String telegramAPIKey;
+
+    public ItaliaGuerraTelegramBot(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret, String telegramAPIKey){
+        this.consumerKey = consumerKey;
+        this.consumerSecret = consumerSecret;
+        this.accessToken = accessToken;
+        this.accessTokenSecret = accessTokenSecret;
+        this.telegramAPIKey = telegramAPIKey;
+    }
+
     public static Long CHAT_ID = 0L;
 
     public static Long ITALIAGUERRABOT_ID = 1134239469735960577L;
@@ -19,10 +33,10 @@ public class ItaliaGuerraTelegramBot extends TelegramLongPollingBot {
             CHAT_ID = update.getMessage().getChatId();
             ConfigurationBuilder cb = new ConfigurationBuilder();
             cb.setDebugEnabled(true)
-                    .setOAuthConsumerKey("x6K10ScMFzJuHm74OpV9ujZ4W")
-                    .setOAuthConsumerSecret("fh8nVQ2nGtExpnbc3R3YoI3ag1g3FZs3HWlxir48vLYk8LOClE")
-                    .setOAuthAccessToken("1137659424657596416-6fmeo86a0Ieede5EfQ7lEgqEUsYutr")
-                    .setOAuthAccessTokenSecret("ysCL64VhUShe4n0GUz4y795sk00uilDSQihTGr5ikjH3V");
+                    .setOAuthConsumerKey(consumerKey)
+                    .setOAuthConsumerSecret(consumerSecret)
+                    .setOAuthAccessToken(accessToken)
+                    .setOAuthAccessTokenSecret(accessTokenSecret);
 
             FilterQuery filterQuery = new FilterQuery(ITALIAGUERRABOT_ID);
             TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
@@ -47,7 +61,7 @@ public class ItaliaGuerraTelegramBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return "822163318:AAFxGumbYeBAGsE4x_gKXHAQxYRHTxNPsEo";
+        return telegramAPIKey;
     }
 
 }

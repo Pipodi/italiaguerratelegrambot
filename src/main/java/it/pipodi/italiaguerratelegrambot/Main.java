@@ -14,7 +14,7 @@ public class Main {
         TelegramBotsApi botsApi = new TelegramBotsApi();
 
         try {
-            botsApi.registerBot(new ItaliaGuerraTelegramBot());
+            botsApi.registerBot(new ItaliaGuerraTelegramBot(args[0], args[1], args[2], args[3], args[4]));
         } catch (TelegramApiRequestException e) {
             e.printStackTrace();
         }

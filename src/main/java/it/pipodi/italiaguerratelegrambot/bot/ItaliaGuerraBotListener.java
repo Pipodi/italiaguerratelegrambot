@@ -24,6 +24,8 @@ public class ItaliaGuerraBotListener implements StatusListener {
             } catch (TelegramApiException e) {
                 e.printStackTrace();
             }
+        }else {
+            System.out.println("Invalid status received: " + status.getText());
         }
 
     }

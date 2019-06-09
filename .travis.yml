@@ -29,7 +29,7 @@ install:
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
   - mvn install -DskipTests=true -B -V
   # Build docker image
-  - docker build -t pipodi/italiaguerratelegrambot --build-arg JAR_FILE=target/italiaguerratelegrambot-1.0-SNAPSHOT-jar-with-dependencies.jar .
+  - docker build -t pipodi/italiaguerratelegrambot --build-arg JAR_FILE=target/italiaguerratelegrambot-1.0-SNAPSHOT-jar-with-dependencies.jar --build-arg CONSUMER_KEY=$CONSUMER_KEY --build-arg CONSUMER_SECRET=$CONSUMER_SECRET --build-arg ACCESS_TOKEN=$ACCESS_TOKEN --build-arg ACCESS_TOKEN_SECRET=$ACCESS_TOKEN_SECRET --build-arg TELEGRAM_API=$TELEGRAM_API .
   - docker run -d --name=italiaguerratelegrambot pipodi/italiaguerratelegrambot
   - docker ps -a
   - docker stats --no-stream

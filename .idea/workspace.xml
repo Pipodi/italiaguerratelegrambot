@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e789b123-2b97-4272-b8bc-064d2cb4f1ee" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/it/pipodi/italiaguerratelegrambot/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/pipodi/italiaguerratelegrambot/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/it/pipodi/italiaguerratelegrambot/bot/ItaliaGuerraBotListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/pipodi/italiaguerratelegrambot/bot/ItaliaGuerraBotListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/it/pipodi/italiaguerratelegrambot/bot/ItaliaGuerraTelegramBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/pipodi/italiaguerratelegrambot/bot/ItaliaGuerraTelegramBot.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -30,8 +33,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/it/pipodi/italiaguerratelegrambot/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="240">
+              <caret line="16" column="102" selection-start-line="16" selection-start-column="102" selection-end-line="16" selection-end-column="102" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -42,12 +45,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/it/pipodi/italiaguerratelegrambot/bot/ItaliaGuerraTelegramBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" column="36" lean-forward="true" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
+            <state relative-caret-position="582">
+              <caret line="63" column="29" selection-start-line="63" selection-start-column="29" selection-end-line="63" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2071#2072#0" expanded="true" />
-                <element signature="e#2190#2191#0" expanded="true" />
+                <element signature="e#2498#2499#0" expanded="true" />
+                <element signature="e#2584#2585#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -56,8 +59,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/it/pipodi/italiaguerratelegrambot/bot/ItaliaGuerraBotListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="94" selection-start-line="19" selection-start-column="94" selection-end-line="19" selection-end-column="94" />
+            <state relative-caret-position="360">
+              <caret line="27" column="77" selection-start-line="27" selection-start-column="77" selection-end-line="27" selection-end-column="77" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#487#488#0" expanded="true" />
@@ -106,8 +109,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/it/pipodi/italiaguerratelegrambot/bot/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/it/pipodi/italiaguerratelegrambot/Main.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/it/pipodi/italiaguerratelegrambot/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/it/pipodi/italiaguerratelegrambot/bot/ItaliaGuerraTelegramBot.java" />
         <option value="$PROJECT_DIR$/src/main/java/it/pipodi/italiaguerratelegrambot/bot/ItaliaGuerraBotListener.java" />
       </list>
@@ -232,6 +235,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="it.pipodi.italiaguerratelegrambot.Main" />
       <module name="italiaguerratelegrambot" />
+      <option name="PROGRAM_PARAMETERS" value="x6K10ScMFzJuHm74OpV9ujZ4W fh8nVQ2nGtExpnbc3R3YoI3ag1g3FZs3HWlxir48vLYk8LOClE 1137659424657596416-6fmeo86a0Ieede5EfQ7lEgqEUsYutr ysCL64VhUShe4n0GUz4y795sk00uilDSQihTGr5ikjH3V 822163318:AAFxGumbYeBAGsE4x_gKXHAQxYRHTxNPsEo" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -260,12 +264,12 @@
       <workItem from="1560013792091" duration="272000" />
       <workItem from="1560074967634" duration="2937000" />
       <workItem from="1560100168783" duration="716000" />
-      <workItem from="1560100921588" duration="5280000" />
+      <workItem from="1560100921588" duration="7943000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13744000" />
+    <option name="totallyTimeSpent" value="16407000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1044" extended-state="6" />
@@ -312,7 +316,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/it/pipodi/italiaguerratelegrambot/bot/ItaliaGuerraTelegramBot.java</url>
-          <line>27</line>
+          <line>41</line>
           <properties />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
@@ -357,8 +361,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/it/pipodi/italiaguerratelegrambot/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        <state relative-caret-position="240">
+          <caret line="16" column="102" selection-start-line="16" selection-start-column="102" selection-end-line="16" selection-end-column="102" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -367,20 +371,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/it/pipodi/italiaguerratelegrambot/bot/ItaliaGuerraTelegramBot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="36" lean-forward="true" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
+        <state relative-caret-position="582">
+          <caret line="63" column="29" selection-start-line="63" selection-start-column="29" selection-end-line="63" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2071#2072#0" expanded="true" />
-            <element signature="e#2190#2191#0" expanded="true" />
+            <element signature="e#2498#2499#0" expanded="true" />
+            <element signature="e#2584#2585#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/it/pipodi/italiaguerratelegrambot/bot/ItaliaGuerraBotListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="94" selection-start-line="19" selection-start-column="94" selection-end-line="19" selection-end-column="94" />
+        <state relative-caret-position="360">
+          <caret line="27" column="77" selection-start-line="27" selection-start-column="77" selection-end-line="27" selection-end-column="77" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#487#488#0" expanded="true" />
