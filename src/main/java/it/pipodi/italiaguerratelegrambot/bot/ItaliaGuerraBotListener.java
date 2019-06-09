@@ -17,7 +17,7 @@ public class ItaliaGuerraBotListener implements StatusListener {
 
     @Override
     public void onStatus(Status status) {
-        if (!status.getText().startsWith("RT")) {
+        if (!status.getText().startsWith("RT") || !status.getText().contains("@italiaguerrabot")) {
             SendMessage message = new SendMessage().setChatId(ItaliaGuerraTelegramBot.CHAT_ID).setText(status.getText());
             try {
                 this.bot.execute(message);
