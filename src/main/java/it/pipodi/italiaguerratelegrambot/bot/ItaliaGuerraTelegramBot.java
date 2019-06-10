@@ -8,6 +8,7 @@ import twitter4j.FilterQuery;
 import twitter4j.TwitterStream;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 
 public class ItaliaGuerraTelegramBot extends TelegramLongPollingBot {
 
@@ -16,6 +17,7 @@ public class ItaliaGuerraTelegramBot extends TelegramLongPollingBot {
 	private Connection db;
 
 	private ItaliaGuerraTelegramBot(TwitterStream twitterStream, String telegramAPIKey, long userId, Connection db) {
+		System.out.println(String.format("[LOG][%s] Starting bot...", LocalDateTime.now().toString()));
 		this.telegramAPIKey = telegramAPIKey;
 		this.db = db;
 		ItaliaGuerraBotListener listener = new ItaliaGuerraBotListener(this, db);
@@ -43,7 +45,7 @@ public class ItaliaGuerraTelegramBot extends TelegramLongPollingBot {
 				ResultSet resultSet = select.executeQuery("select * from chatids");
 				while (resultSet.next()) {
 					String chatId = resultSet.getString("chatid");
-					System.out.println("[LOG] chatId in db: " + chatId);
+					System.out.println(String.format("[LOG][%s] chatId in db: %s", LocalDateTime.now().toString(), update.getMessage().getChatId().toString()));
 					if (chatId.equals(String.valueOf(update.getMessage().getChatId()))) {
 						SendMessage message = new SendMessage().setChatId(update.getMessage().getChatId()).setText("Bot già avviato.")
 								.setParseMode("Markdown");
@@ -56,6 +58,8 @@ public class ItaliaGuerraTelegramBot extends TelegramLongPollingBot {
 						return;
 					}
 				}
+				System.out.println(String.format("[LOG][%s] Inserting chatid: %s", LocalDateTime.now().toString(),
+						update.getMessage().getChatId().toString()));
 				String query = "insert into chatids (chatid) values (?)";
 				PreparedStatement statement = db.prepareStatement(query);
 				statement.setString(1, String.valueOf(update.getMessage().getChatId()));
@@ -72,6 +76,7 @@ public class ItaliaGuerraTelegramBot extends TelegramLongPollingBot {
 				e.printStackTrace();
 			}
 		} else if (update.getMessage().getText().contains("/stop")) {
+			System.out.println(String.format("[LOG][%s] Deleting chatid: %s", LocalDateTime.now().toString(), update.getMessage().getChatId().toString()));
 			String query = "delete from chatids where chatid = ?";
 			try {
 				PreparedStatement statement = db.prepareStatement(query);
