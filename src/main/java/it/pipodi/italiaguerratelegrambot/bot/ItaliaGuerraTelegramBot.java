@@ -36,7 +36,7 @@ public class ItaliaGuerraTelegramBot extends TelegramLongPollingBot {
 
 	@Override
 	public void onUpdateReceived(Update update) {
-		if (update.getMessage().getText().equals("/start")) {
+		if (update.getMessage().getText().contains("/start")) {
 			Statement select = null;
 			try {
 				select = db.createStatement();
@@ -66,6 +66,25 @@ public class ItaliaGuerraTelegramBot extends TelegramLongPollingBot {
 			SendMessage message = new SendMessage().setChatId(update.getMessage().getChatId())
 					.setText("Bot avviato. In attesa di aggiornamenti da parte di [ItaliaGuerraBot 2020](https://twitter.com/italiaguerrabot)")
 					.setParseMode("Markdown");
+			try {
+				execute(message);
+			} catch (TelegramApiException e) {
+				e.printStackTrace();
+			}
+		} else if (update.getMessage().getText().contains("/stop")) {
+			String query = "delete from chatids where chatid = ?";
+			try {
+				PreparedStatement statement = db.prepareStatement(query);
+				statement.setString(1, String.valueOf(update.getMessage().getChatId()));
+				statement.executeUpdate();
+				SendMessage message = new SendMessage().setChatId(update.getMessage().getChatId()).setText("Bot fermo. Non riceverai più " +
+						"aggiornamenti da parte di [ItaliaGuerraBot 2020](https://twitter.com/italiaguerrabot)").setParseMode("Markdown");
+				execute(message);
+			} catch (SQLException | TelegramApiException e) {
+				e.printStackTrace();
+			}
+		} else {
+			SendMessage message = new SendMessage().setChatId(update.getMessage().getChatId()).setText("Comando errato.");
 			try {
 				execute(message);
 			} catch (TelegramApiException e) {
