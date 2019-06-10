@@ -9,6 +9,10 @@ import twitter4j.*;
 import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class Main {
 
     public static void main(String[] args){
@@ -38,9 +42,16 @@ public class Main {
         ApiContextInitializer.init();
 
         TelegramBotsApi botsApi = new TelegramBotsApi();
+        Connection db = null;
 
         try {
-            botsApi.registerBot(ItaliaGuerraTelegramBot.getInstance(twitterStream, args[4], italiaguerrabotProfile.getId()));
+             db = DriverManager.getConnection("jdbc:sqlite:/home/pipodi/italiaguerrabot/sessions.db");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            botsApi.registerBot(ItaliaGuerraTelegramBot.getInstance(twitterStream, args[4], italiaguerrabotProfile.getId(), db));
         } catch (TelegramApiRequestException e) {
             e.printStackTrace();
         }
