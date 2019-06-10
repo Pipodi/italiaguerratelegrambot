@@ -10,15 +10,17 @@ import twitter4j.StatusListener;
 public class ItaliaGuerraBotListener implements StatusListener {
 
     private ItaliaGuerraTelegramBot bot;
+    private long chatId;
 
-    public ItaliaGuerraBotListener(ItaliaGuerraTelegramBot bot){
+    public ItaliaGuerraBotListener(ItaliaGuerraTelegramBot bot, long chatId){
         this.bot = bot;
+        this.chatId = chatId;
     }
 
     @Override
     public void onStatus(Status status) {
         if (!status.getText().startsWith("RT") || !status.getText().contains("@italiaguerrabot")) {
-            SendMessage message = new SendMessage().setChatId(ItaliaGuerraTelegramBot.CHAT_ID).setText(status.getText());
+            SendMessage message = new SendMessage().setChatId(this.chatId).setText(status.getText());
             try {
                 this.bot.execute(message);
             } catch (TelegramApiException e) {

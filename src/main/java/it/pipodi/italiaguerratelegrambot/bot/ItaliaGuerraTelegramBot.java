@@ -5,45 +5,36 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import twitter4j.*;
+import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class ItaliaGuerraTelegramBot extends TelegramLongPollingBot {
 
-    private String consumerKey;
-    private String consumerSecret;
-    private String accessToken;
-    private String accessTokenSecret;
     private String telegramAPIKey;
+    private Twitter twitter;
+    private TwitterStream twitterStream;
 
-    public ItaliaGuerraTelegramBot(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret, String telegramAPIKey){
-        this.consumerKey = consumerKey;
-        this.consumerSecret = consumerSecret;
-        this.accessToken = accessToken;
-        this.accessTokenSecret = accessTokenSecret;
+    public ItaliaGuerraTelegramBot(Twitter twitter, TwitterStream twitterStream, String telegramAPIKey){
         this.telegramAPIKey = telegramAPIKey;
+        this.twitter = twitter;
+        this.twitterStream = twitterStream;
     }
 
-    public static Long CHAT_ID = 0L;
-
-    public static Long ITALIAGUERRABOT_ID = 1134239469735960577L;
 
     @Override
     public void onUpdateReceived(Update update) {
         if (update.getMessage().getText().equals("/start")) {
-            CHAT_ID = update.getMessage().getChatId();
-            ConfigurationBuilder cb = new ConfigurationBuilder();
-            cb.setDebugEnabled(true)
-                    .setOAuthConsumerKey(consumerKey)
-                    .setOAuthConsumerSecret(consumerSecret)
-                    .setOAuthAccessToken(accessToken)
-                    .setOAuthAccessTokenSecret(accessTokenSecret);
 
-            FilterQuery filterQuery = new FilterQuery(ITALIAGUERRABOT_ID);
-            TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
-            TwitterStream twitterStream = twitterStreamFactory.getInstance();
-            twitterStream.addListener(new ItaliaGuerraBotListener(this));
+            User italiaguerrabotProfile = null;
+            try {
+                italiaguerrabotProfile = twitter.showUser("italiaguerrabot");
+            } catch (TwitterException e) {
+                e.printStackTrace();
+            }
+
+            FilterQuery filterQuery = new FilterQuery(italiaguerrabotProfile.getId());
+            this.twitterStream.addListener(new ItaliaGuerraBotListener(this, update.getMessage().getChatId()));
             twitterStream.filter(filterQuery);
-
             SendMessage message = new SendMessage().setChatId(update.getMessage().getChatId()).setText("Bot avviato. In attesa di aggiornamenti da parte di [ItaliaGuerraBot 2020](https://twitter.com/italiaguerrabot)").setParseMode("Markdown");
             try {
                 execute(message);
