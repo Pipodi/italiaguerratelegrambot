@@ -14,8 +14,6 @@ public class ItaliaGuerraTelegramBot extends TelegramLongPollingBot {
 
     private static ItaliaGuerraTelegramBot instance = null;
 
-    private boolean isStarted = false;
-
     public static ItaliaGuerraTelegramBot getInstance(TwitterStream twitterStream, String telegramAPIKey, long userId){
         if (instance != null){
             return instance;
@@ -36,24 +34,13 @@ public class ItaliaGuerraTelegramBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         if (update.getMessage().getText().equals("/start")) {
-
-            if (isStarted){
-                SendMessage message = new SendMessage().setChatId(update.getMessage().getChatId()).setText("Bot già avviato");
-                try {
-                    execute(message);
-                    return;
-                } catch (TelegramApiException e) {
-                    e.printStackTrace();
-                }
-            }
-
+            ItaliaGuerraBotListener listener = new ItaliaGuerraBotListener(this, update.getMessage().getChatId());
+            this.twitterStream.addListener(listener);
             FilterQuery filterQuery = new FilterQuery(userId);
-            this.twitterStream.addListener(new ItaliaGuerraBotListener(this, update.getMessage().getChatId()));
             twitterStream.filter(filterQuery);
             SendMessage message = new SendMessage().setChatId(update.getMessage().getChatId()).setText("Bot avviato. In attesa di aggiornamenti da parte di [ItaliaGuerraBot 2020](https://twitter.com/italiaguerrabot)").setParseMode("Markdown");
             try {
                 execute(message);
-                isStarted = true;
             } catch (TelegramApiException e) {
                 e.printStackTrace();
             }

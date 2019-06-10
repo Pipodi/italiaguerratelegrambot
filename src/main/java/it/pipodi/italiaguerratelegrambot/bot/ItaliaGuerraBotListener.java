@@ -19,7 +19,8 @@ public class ItaliaGuerraBotListener implements StatusListener {
 
     @Override
     public void onStatus(Status status) {
-        if (!status.getText().startsWith("RT") || !status.getText().startsWith("@italiaguerrabot")) {
+        if (!status.isRetweet() && status.getUser().getScreenName().equals("italiaguerrabot")) {
+            System.out.println("[LOG] Status received: " + status.toString());
             SendMessage message = new SendMessage().setChatId(this.chatId).setText(status.getText());
             try {
                 this.bot.execute(message);
@@ -55,5 +56,9 @@ public class ItaliaGuerraBotListener implements StatusListener {
     @Override
     public void onException(Exception e) {
 
+    }
+
+    public void setChatId(long chatId){
+        this.chatId = chatId;
     }
 }
