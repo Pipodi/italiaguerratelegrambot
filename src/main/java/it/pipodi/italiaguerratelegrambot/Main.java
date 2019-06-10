@@ -5,10 +5,7 @@ import it.pipodi.italiaguerratelegrambot.bot.ItaliaGuerraTelegramBot;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
-import twitter4j.Twitter;
-import twitter4j.TwitterFactory;
-import twitter4j.TwitterStream;
-import twitter4j.TwitterStreamFactory;
+import twitter4j.*;
 import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
 
@@ -28,6 +25,12 @@ public class Main {
         TwitterFactory twitterFactory = new TwitterFactory(configuration);
         Twitter twitter = twitterFactory.getInstance();
 
+        User italiaguerrabotProfile = null;
+        try {
+            italiaguerrabotProfile = twitter.showUser("italiaguerrabot");
+        } catch (TwitterException e) {
+            e.printStackTrace();
+        }
 
         TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(configuration);
         TwitterStream twitterStream = twitterStreamFactory.getInstance();
@@ -37,7 +40,7 @@ public class Main {
         TelegramBotsApi botsApi = new TelegramBotsApi();
 
         try {
-            botsApi.registerBot(new ItaliaGuerraTelegramBot(twitter, twitterStream, args[4]));
+            botsApi.registerBot(ItaliaGuerraTelegramBot.getInstance(twitterStream, args[4], italiaguerrabotProfile.getId()));
         } catch (TelegramApiRequestException e) {
             e.printStackTrace();
         }
