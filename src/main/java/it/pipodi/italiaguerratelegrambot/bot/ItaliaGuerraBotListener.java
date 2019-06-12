@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 
 public class ItaliaGuerraBotListener implements StatusListener {
 
@@ -25,7 +26,7 @@ public class ItaliaGuerraBotListener implements StatusListener {
 	@Override
 	public void onStatus(Status status) {
 		if (!status.isRetweet() && status.getUser().getScreenName().equals("italiaguerrabot")) {
-			System.out.println("[LOG] Status received: " + status.toString());
+			System.out.println(String.format("[LOG][%s] Status received: %s", LocalDateTime.now().toString(), status.getText()));
 
 			String tweetText = status.getText();
 
@@ -44,7 +45,7 @@ public class ItaliaGuerraBotListener implements StatusListener {
 
 
 		} else {
-			System.out.println("Invalid status received: " + status.getText());
+			System.out.println(String.format("[LOG][%s] Invalid status received: %s", LocalDateTime.now().toString(), status.getText()));
 		}
 
 	}
