@@ -38,7 +38,7 @@ public class ItaliaGuerraTelegramBot extends TelegramLongPollingBot {
 
 	@Override
 	public void onUpdateReceived(Update update) {
-		if (update.getMessage().getText().contains("/start")) {
+		if (update.getMessage().isCommand() && update.getMessage().getText().contains("/start")) {
 			Statement select = null;
 			try {
 				select = db.createStatement();
@@ -75,7 +75,7 @@ public class ItaliaGuerraTelegramBot extends TelegramLongPollingBot {
 			} catch (TelegramApiException e) {
 				e.printStackTrace();
 			}
-		} else if (update.getMessage().getText().contains("/stop")) {
+		} else if (update.getMessage().isCommand() && update.getMessage().getText().contains("/stop")) {
 			System.out.println(String.format("[LOG][%s] Deleting chatid: %s", LocalDateTime.now().toString(), update.getMessage().getChatId().toString()));
 			String query = "delete from chatids where chatid = ?";
 			try {
@@ -88,6 +88,9 @@ public class ItaliaGuerraTelegramBot extends TelegramLongPollingBot {
 			} catch (SQLException | TelegramApiException e) {
 				e.printStackTrace();
 			}
+		} else if (update.getMessage().isReply() || !update.getMessage().isCommand()) {
+			// Do nothing
+			return;
 		} else {
 			SendMessage message = new SendMessage().setChatId(update.getMessage().getChatId()).setText("Comando errato.");
 			try {
